@@ -8,7 +8,7 @@ export function generateToken(decodedToken: string | object): string {
     const token = sign(decodedToken, 'open-secrete');
     verify(token, 'open-secrete');
     return token;
-  } catch (e) {
+  } catch (e: any) {
     const err = new Error('Error when generating OIDC token: ' + e.message);
     throw err;
   }

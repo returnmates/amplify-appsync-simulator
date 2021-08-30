@@ -334,7 +334,7 @@ export class AuthModal extends Component<Props, State> {
     const tokenPayload = this.state.currentOIDCTokenDecoded || '';
     try {
       return generateToken(tokenPayload);
-    } catch (e) {
+    } catch (e: any) {
       this.setState({
         oidcTokenError: e.message,
       });
