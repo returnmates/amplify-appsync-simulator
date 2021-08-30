@@ -81,6 +81,7 @@ export declare function create(errors: any[], now: Date, info: GraphQLResolveInf
     };
     rds: {
         toJsonString: (rdsObject: any) => string;
+        toJsonObject: (rdsString: any) => any;
     };
     quiet: () => string;
     qr: () => string;
