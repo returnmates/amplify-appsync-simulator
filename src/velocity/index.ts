@@ -117,19 +117,17 @@ export class VelocityTemplate {
           : {}),
       });
     } else if (requestContext.requestAuthorizationMode === AmplifyAppSyncSimulatorAuthenticationType.AWS_IAM) {
-      console.log({ jwt });
       identity = convertToJavaTypes({
-        //accountId,
-        //cognitoIdentityPoolId,
-        //cognitoIdentityId,
-        //sourceIp,
-        username,
-        //userArn,
-        //cognitoIdentityAuthType,
-        //cognitoIdentityAuthProvider
+        accountId: 1, // Just needs to be a valid number
+        // cognitoIdentityPoolId,
+        // cognitoIdentityId,
+        // sourceIp,
+        username: "iam.user",
+        // userArn,
+        // cognitoIdentityAuthType,
+        // cognitoIdentityAuthProvider
       });
     }
-
     const vtlContext = {
       arguments: args,
       args,
