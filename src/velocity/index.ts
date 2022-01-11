@@ -116,6 +116,18 @@ export class VelocityTemplate {
           ? { defaultAuthStrategy: 'ALLOW' }
           : {}),
       });
+    } else if (requestContext.requestAuthorizationMode === AmplifyAppSyncSimulatorAuthenticationType.AWS_IAM) {
+      console.log({ jwt });
+      identity = convertToJavaTypes({
+        //accountId,
+        //cognitoIdentityPoolId,
+        //cognitoIdentityId,
+        //sourceIp,
+        username,
+        //userArn,
+        //cognitoIdentityAuthType,
+        //cognitoIdentityAuthProvider
+      });
     }
 
     const vtlContext = {

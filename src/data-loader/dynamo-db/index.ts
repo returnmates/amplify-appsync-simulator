@@ -127,7 +127,6 @@ export class DynamoDBDataLoader implements AmplifyAppSyncSimulatorDataLoader {
     const { Items: items, ScannedCount: scannedCount, LastEvaluatedKey: resultNextToken = null } = await this.client
       .query(params as any)
       .promise();
-
     return {
       items: items.map(item => unmarshall(item)),
       scannedCount,
@@ -152,7 +151,9 @@ export class DynamoDBDataLoader implements AmplifyAppSyncSimulatorDataLoader {
         ...(update.expressionValues || {}),
       }),
     };
+    console.log("DynamoDB.Update: ", { params });
     const { Attributes: updated } = await this.client.updateItem(params).promise();
+    console.log("DynamoDB.Update: ", { updated });
     return unmarshall(updated);
   }
 
@@ -203,7 +204,13 @@ export class DynamoDBDataLoader implements AmplifyAppSyncSimulatorDataLoader {
         },
       });
     }
+    console.log("DynamoDB.Scan: ", { params });
     const { Items: items, ScannedCount: scannedCount, LastEvaluatedKey: resultNextToken = null } = await this.client.scan(params).promise();
+    console.log("DynamoDB.Scan: ", {
+      items: items.map(item => unmarshall(item)),
+      scannedCount,
+      nextToken: resultNextToken ? Buffer.from(JSON.stringify(resultNextToken)).toString('base64') : null,
+    });
 
     return {
       items: items.map(item => unmarshall(item)),

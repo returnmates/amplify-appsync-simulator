@@ -98,6 +98,7 @@ export function protectResolversWithAuthRules(typeDef, existingResolvers, simula
 
     const newResolver = (root, args, ctx: AmplifyAppSyncSimulatorRequestContext, info: GraphQLResolveInfo) => {
       const currentAuthMode = ctx.requestAuthorizationMode;
+      console.log(`protectResolversWithAuthRules[${field}].newResolver: `, { currentAuthMode, allowedAuthTypes });
       if (!allowedAuthTypes.includes(currentAuthMode)) {
         const err = new Unauthorized(`Not Authorized to access ${fieldName} on type ${typeName}`, info);
         throw err;
