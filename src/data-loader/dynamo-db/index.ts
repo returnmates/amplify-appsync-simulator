@@ -127,7 +127,7 @@ export class DynamoDBDataLoader implements AmplifyAppSyncSimulatorDataLoader {
       .query(params as any)
       .promise();
     return {
-      items: items.map(item => unmarshall(item)),
+      items: items?.map(item => unmarshall(item)),
       scannedCount,
       nextToken: resultNextToken ? Buffer.from(JSON.stringify(resultNextToken)).toString('base64') : null,
     };
